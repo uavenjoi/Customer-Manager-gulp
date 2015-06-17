@@ -1,0 +1,14 @@
+.ajax-error {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+
+    .main-error-label {
+        cursor: pointer
+    }
+
+    pre {
+        font-size: 10px
+    }
+}

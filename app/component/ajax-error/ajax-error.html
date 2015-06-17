@@ -1,0 +1,23 @@
+<div ng-if="ajaxErrorService.error" class="ajax-error">
+    <span class="alert label round main-error-label"
+          ng-click="showErrorDetails = !showErrorDetails"
+          title="click to see error details">
+        <b>ups, looks like error happened</b>
+    </span>
+    <div ng-if="ajaxErrorService.error.status == 0">
+        <span>probably you forgot to connect to the</span>
+        <a href="https://remote.renlearn.com" target="_blank">vpn</a>
+    </div>
+    <div ng-show="showErrorDetails">
+        <b>error details:</b><br/>
+        <span ng-show="ajaxErrorService.error.data">
+            <span class="secondary label round"><i><b>error message:</b></i></span>
+           <span>{{ajaxErrorService.error.data}}</span><br/>
+        </span>
+        <span class="secondary label round"><i><b>request url:</b></i></span>
+        <span>{{ajaxErrorService.error.config.url}}</span>
+        <br/>
+        <span class="secondary label round"><i><b>request params:</b></i></span>
+        <pre>{{ajaxErrorService.error.config.data | json}}</pre>
+    </div>
+</div>
