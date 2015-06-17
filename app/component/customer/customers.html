@@ -1,0 +1,94 @@
+<div class="row" ng-hide="isEdit || isCreate">
+    <div class="col-md-10">
+        <div class="navbar">
+            <ul class="nav navbar-nav">
+                <li class="toolbaritem">
+                    <a  ng-click="openCreate(); isCreate=true">
+                        <span class="glyphicon glyphicon-plus"> </span>
+                        Add Customer
+                    </a>
+                </li>
+            </ul>
+            <div class="navbar-form navbar-right">
+                <div class="form-group">
+                    <label class="navbarText col-sm-2">Sort:</label>
+                    <div class="col-sm-10">
+                       <a href="" ng-click="reverse=!reverse">By name</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+<div  ng-show="isEdit || isCreate" class="col-sm-3">
+    <div>{{currentAction}}</div>
+    <div class="form-group">
+        <label>First name:</label>
+        <input class="form-control" ng-model="customer.firstName">
+    </div>
+    <div class="form-group">
+        <label>Last name:</label>
+        <input class="form-control" ng-model="customer.name">
+    </div>
+    <div class="form-group">
+        <label>City :</label>
+        <input class="form-control" ng-model="customer.city">
+    </div>
+    <button type="button" ng-show="isCreate"
+            ng-click="services.addCustomer(customer); isCreate=false;"
+            class="btn btn-info btn-lg">Create</button>
+    <button type="button"
+            ng-show="isEdit"
+            ng-click="services.updateCustomer(customer);isEdit=false;"
+            class="btn btn-info btn-lg">Edit</button>
+    <button type="button"
+            class="btn btn-default btn-lg pull-right"
+            ng-click="isCreate=false; isEdit=false">
+        Cancel
+    </button>
+</div>
+</div>
+
+<div ng-hide="isCreate || isEdit" class="row cardContainer show-hide-animation">
+    <div class="col-sm-6 col-md-4 col-lg-3" customer="customer"
+         data-ng-repeat="customer in customers | orderBy : 'name' : reverse">
+        <div class="card">
+            <button class="btn close cardClose"
+                    title="Delete Customer"
+                    ng-click="services.deleteCustomer(customer)">&times;</button>
+            <div class="cardHeader">
+                <a  ng-click="openEdit(customer); isEdit=true"
+                                        href="#/customeredit"
+                                       class="white">{{customer.firstName + ' ' + customer.name}}
+                <i class="icon-edit icon-white editIcon">
+                </i>
+                </a>
+            </div>
+            <div class="cardBody">
+                <div class="clearfix">
+                    <div class="pull-left cardBodyLeft">
+                        <a ng-click="openEdit(customer); isEdit=true"
+                           href="#/customeredit"
+                           class="white">
+                            <img ng-src="app/component/images/{{customer.gender | lowercase}}.png"
+                                 class="cardImage" />
+                        </a>
+                    </div>
+                    <div class="pull-left cardBodyRight">
+                        <div class="cardBodyContent">City: {{customer.city}}</div>
+                        <div>
+                            <a ui-sref="detail({id:customer.id})"
+                               class="btn-link">
+                                {{ customer.orders.length }}
+                                            <span ng-pluralize count="customer.orders.length"
+                                                  when="{'1': 'Order','other': 'Orders'}">
+                                            </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
