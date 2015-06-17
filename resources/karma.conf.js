@@ -2,7 +2,7 @@ module.exports = function (config) {
     config.set({
         basePath: '../',
         frameworks: ['jasmine'],
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome'],
         autoWatch: true,
         usePolling: true,
         'atomic_save': false,
@@ -36,7 +36,7 @@ module.exports = function (config) {
             '{app,app/!(*vendor|*copied-from-bower)+(**)/**}/!(*data|*spec)+(.js)': ['coverage'],
             'app/**/*.html': ['ng-html2js']
         },
-        ngHtml2JsPreprocessor: {moduleName: 'templates'},
+        //ngHtml2JsPreprocessor: {moduleName: 'templates'},
         reporters: ['progress', 'coverage'],
         coverageReporter: {reporters: [{dir: 'coverage', type: 'html'}]},
         logLevel: config.LOG_INFO // for debug use config.LOG_DEBUG

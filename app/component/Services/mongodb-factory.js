@@ -87,6 +87,7 @@ angular.module('mongodb-factory',[
         }
         this.isLoad=false;
         return {
+            customers:customers,
 
             add:function(item){
               addCustomer(item);
