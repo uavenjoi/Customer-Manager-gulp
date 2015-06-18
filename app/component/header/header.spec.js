@@ -15,7 +15,6 @@ describe('header-test',function(){
             $state.active='customers';
             var header = directiveBuilder.build('<main-menu><main-menu/>');
             header.scope.$digest();
-            console.log(header.element.html());
             expect(header.element.html()).toBeDefined();
 
             expect(header.element.find('li').eq(1).hasClass('active')).toBe(false);

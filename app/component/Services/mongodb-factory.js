@@ -37,7 +37,7 @@ angular.module('mongodb-factory',[
             mongolabFactory.save(item).$promise.then(function(resource){
                 item.id=resource.id;
                 customers.push(item);
-                console.log(resource);
+                //console.log(resource);
             });
         }
         var deleteCustomer = function(customer){
@@ -91,6 +91,15 @@ angular.module('mongodb-factory',[
 
             add:function(item){
               addCustomer(item);
+            },
+            delete: function(item){
+                deleteCustomer(item);
+            },
+            addOrder: function(item){
+                addOrder(item);
+            },
+            getCustomerById: function(id){
+                getCustomerById(id);
             },
 
             getServices:function(){

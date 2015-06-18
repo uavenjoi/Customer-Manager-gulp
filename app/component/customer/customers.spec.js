@@ -2,6 +2,7 @@ describe('customers-test', function(){
     beforeEach(module('templates'));
     beforeEach(module('ui.router'));
     beforeEach(module('customersModule'));
+
     beforeEach(module('mongodb-factory',function(mongolabFactoryProvider){
         mongolabFactoryProvider.setConfigs({
             dataBase:'killerdb',
@@ -22,10 +23,7 @@ describe('customers-test', function(){
         var customerdetail=directiveBuilder.build('<customerdetail><customerdetail/>');
         customerdetail.scope.$digest();
         $httpBackend.flush();
-        //console.log(directive1.scope.customers);
-        //console.log(directive1.scope.services.getCustomerById('1434035814982').firstName);
-       // console.log(directive.element.html());
-        expect(directive1.element.html()).toBeDefined();
+          expect(directive1.element.html()).toBeDefined();
         var customer= {
             "_id": {
             "$oid": "557db6cae4b0374677d221a9"

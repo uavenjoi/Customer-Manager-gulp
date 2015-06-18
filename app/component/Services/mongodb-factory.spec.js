@@ -1,24 +1,40 @@
 describe('factory-test', function(){
-    var testProvider;
+    beforeEach(module('templates'));
+    beforeEach(module('ui.router'));
+    beforeEach(module('customersModule'));
+
     beforeEach(module('mongodb-factory',function(mongolabFactoryProvider){
-        testProvider=mongolabFactoryProvider;
-        /*mongolabFactoryProvider.setConfigs({
+        mongolabFactoryProvider.setConfigs({
             dataBase:'killerdb',
             apiKey:'lb2kRL5a6FkRwkH3vOSAOuPUUDhtCYJ2'
-        });*/
+        });
+    }));
+
+    beforeEach(inject(function($httpBackend){
+        var url='https://api.mongolab.com/api/1/databases/killerdb/collections/test-collection2?apiKey=lb2kRL5a6FkRwkH3vOSAOuPUUDhtCYJ2';
+        $httpBackend.whenGET(url).respond(200,[{}]);
+
     }));
 
     it('Check instance', inject(function(customerFactory){
-        expect(testProvider.setConfigs).toBeDefined();
         expect(customerFactory).toBeDefined();
         expect(customerFactory.add).toBeDefined();
     }))
+
     it('test', inject(function(customerFactory){
-        //var customers= customerFactory.getCustomers();
         customerFactory.loadCustomers();
         var customers=customerFactory.getCustomers();
-        //console.log(customers);
         expect(customers.length).toBe(0);
+    }))
+
+    it('test functions', inject(function(directiveBuilder,customerFactory,$httpBackend){
+        var directive1=directiveBuilder.build('<customers><customers/>');
+        directive1.scope.$digest();
+        $httpBackend.flush();
+        var customer={};
+       expect(customerFactory.add(customer));
+
+
     }))
 
 })
