@@ -1,5 +1,6 @@
 describe('customers-test', function(){
     beforeEach(module('templates'));
+    beforeEach(module('ui.router'));
     beforeEach(module('customersModule'));
     beforeEach(module('mongodb-factory',function(mongolabFactoryProvider){
         mongolabFactoryProvider.setConfigs({
@@ -15,12 +16,35 @@ describe('customers-test', function(){
     }));
 
 
-    it('element should be compiled', inject(function(directiveBuilder,$httpBackend){
-
-        var directive=directiveBuilder.build('<customers><customers/>');
-        directive.scope.$digest();
+    it('element customers should be compiled', inject(function(directiveBuilder,$httpBackend){
+        var directive1=directiveBuilder.build('<customers><customers/>');
+        directive1.scope.$digest();
+        var customerdetail=directiveBuilder.build('<customerdetail><customerdetail/>');
+        customerdetail.scope.$digest();
         $httpBackend.flush();
-        console.log(directive.element.html());
-        expect(directive.element.html()).toBeDefined();
-    }))
+        console.log(directive1.scope.customers);
+        console.log(directive1.scope.services.getCustomerById('1434035814982').firstName);
+       // console.log(directive.element.html());
+        expect(directive1.element.html()).toBeDefined();
+        var customer= {
+            "_id": {
+            "$oid": "557db6cae4b0374677d221a9"
+        },
+            "id": 1434302152872,
+            "city": "6",
+            "gender": "female",
+            "firstName": "4",
+            "name": "5",
+            "orders": []
+        }
+        expect(directive1.scope.openEdit(customer)).toBeUndefined;
+        expect(directive1.scope.openCreate());
+
+        expect(customerdetail.element.html()).toBeDefined();
+        expect(customerdetail.scope.addOrder());
+
+
+     }));
+
+
 })
