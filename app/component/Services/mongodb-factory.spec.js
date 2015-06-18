@@ -27,11 +27,17 @@ describe('factory-test', function(){
         expect(customers.length).toBe(0);
     }))
 
-    it('test functions', inject(function(directiveBuilder,customerFactory,$httpBackend){
+    it('test functions', inject(function(directiveBuilder, customerFactory, $httpBackend){
         var directive1=directiveBuilder.build('<customers><customers/>');
         directive1.scope.$digest();
         $httpBackend.flush();
         var customer={};
        expect(customerFactory.add(customer));
+        //$httpBackend.flush();
+        //console.log('customers');
+        //var current= customerFactory.getCustomerById('1434300657784');
+        //console.log(current);
+        //expect(customerFactory.add(customerFactory.delete({})));
+
     }))
 })
