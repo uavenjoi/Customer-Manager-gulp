@@ -1,6 +1,15 @@
 describe('factory-test', function(){
-    beforeEach(module('mongodb-factory'));
+    var testProvider;
+    beforeEach(module('mongodb-factory',function(mongolabFactoryProvider){
+        testProvider=mongolabFactoryProvider;
+        /*mongolabFactoryProvider.setConfigs({
+            dataBase:'killerdb',
+            apiKey:'lb2kRL5a6FkRwkH3vOSAOuPUUDhtCYJ2'
+        });*/
+    }));
+
     it('Check instance', inject(function(customerFactory){
+        expect(testProvider.setConfigs).toBeDefined();
         expect(customerFactory).toBeDefined();
         expect(customerFactory.add).toBeDefined();
     }))
@@ -8,7 +17,7 @@ describe('factory-test', function(){
         //var customers= customerFactory.getCustomers();
         customerFactory.loadCustomers();
         var customers=customerFactory.getCustomers();
-        console.log(customers);
+        //console.log(customers);
         expect(customers.length).toBe(0);
     }))
 

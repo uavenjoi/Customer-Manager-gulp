@@ -34,9 +34,11 @@ module.exports = function (config) {
         ],
         preprocessors: {
             '{app,app/!(*vendor|*copied-from-bower)+(**)/**}/!(*data|*spec)+(.js)': ['coverage'],
-            'app/**/*.html': ['ng-html2js']
+            'app/**/*.html': ['ng-html2js'],
         },
-        //ngHtml2JsPreprocessor: {moduleName: 'templates'},
+        ngHtml2JsPreprocessor: {
+            moduleName: 'templates',
+        },
         reporters: ['progress', 'coverage'],
         coverageReporter: {reporters: [{dir: 'coverage', type: 'html'}]},
         logLevel: config.LOG_INFO // for debug use config.LOG_DEBUG

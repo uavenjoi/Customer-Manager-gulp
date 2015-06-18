@@ -1,7 +1,7 @@
 angular.module('customersModule',[
     'mongodb-factory'
 ])
-    .directive('customers', function(mongolabFactory, customerFactory,$state){
+    .directive('customers', function(mongolabFactory, customerFactory){
         return {
             restrict:'E',
             transclude: true,
