@@ -5,6 +5,7 @@ angular.module('headerModule',[])
             transclude: true,
             templateUrl: 'app/component/header/header.html',
             link: function(scope){
+                scope.active='customers';
                 scope.appTitle = 'Customer Manager';
             }
         }

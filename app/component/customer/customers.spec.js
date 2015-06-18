@@ -22,8 +22,8 @@ describe('customers-test', function(){
         var customerdetail=directiveBuilder.build('<customerdetail><customerdetail/>');
         customerdetail.scope.$digest();
         $httpBackend.flush();
-        console.log(directive1.scope.customers);
-        console.log(directive1.scope.services.getCustomerById('1434035814982').firstName);
+        //console.log(directive1.scope.customers);
+        //console.log(directive1.scope.services.getCustomerById('1434035814982').firstName);
        // console.log(directive.element.html());
         expect(directive1.element.html()).toBeDefined();
         var customer= {
@@ -37,7 +37,7 @@ describe('customers-test', function(){
             "name": "5",
             "orders": []
         }
-        expect(directive1.scope.openEdit(customer)).toBeUndefined;
+        expect(directive1.scope.openEdit(customer));
         expect(directive1.scope.openCreate());
 
         expect(customerdetail.element.html()).toBeDefined();
