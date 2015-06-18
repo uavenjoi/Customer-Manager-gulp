@@ -33,8 +33,5 @@ describe('factory-test', function(){
         $httpBackend.flush();
         var customer={};
        expect(customerFactory.add(customer));
-
-
     }))
-
 })
