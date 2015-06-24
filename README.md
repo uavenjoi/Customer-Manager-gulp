@@ -33,7 +33,7 @@ Manually to generate index.html run:
 ```sh
 $ gulp inject-files
 ```
-Manually to compile all sass files into css files run:
+Manually to compile all sass files into css files run::
 ```sh
 $ gulp sass
 ```
